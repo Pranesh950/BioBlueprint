@@ -1,0 +1,7 @@
+part_id,part_name,part_type,sequence_length_bp,source,version,notes
+P-001,PBAD promoter,Promoter,120,pGLO reference sequence,v1,Arabinose-inducible promoter regulated by AraC
+RBS-001,Consensus RBS,RBS,20,In-house design,v1,Optimized for E. coli K-12
+CDS-001,sfGFP,Coding sequence,720,Addgene-derived sequence,v1,Codon usage compatible with E. coli
+TERM-001,Bacterial terminator,Terminator,55,Synthetic DNA vendor,v1,Strong transcriptional terminator
+SEL-001,AmpR marker (bla),Selection marker,861,pGLO reference sequence,v1,Ampicillin resistance cassette
+ORI-001,ColE1-like origin,Origin,620,Backbone stock,v3,High copy replication origin

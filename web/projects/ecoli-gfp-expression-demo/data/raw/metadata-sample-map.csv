@@ -1,0 +1,10 @@
+well,condition,replicate,strain_id,media,antibiotic
+A1,media_blank,1,None,LB,None
+A2,media_blank,2,None,LB,None
+A3,media_blank,3,None,LB,None
+B1,host_control,1,HB101-CTRL-01,LB,None
+B2,host_control,2,HB101-CTRL-01,LB,None
+B3,host_control,3,HB101-CTRL-01,LB,None
+C1,gfp_clone,1,HB101-pGLO-01,LB + arabinose,Ampicillin
+C2,gfp_clone,2,HB101-pGLO-01,LB + arabinose,Ampicillin
+C3,gfp_clone,3,HB101-pGLO-01,LB + arabinose,Ampicillin

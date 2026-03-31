@@ -1,0 +1,4 @@
+strain_id,parent_strain,construct_id,selection_marker,creation_date,operator,status,notes
+HB101-CTRL-01,E. coli K-12 HB101,None,None,2026-03-20,example_user,active,No-plasmid control host
+HB101-pGLO-01,E. coli K-12 HB101,pGLO,AmpR,2026-03-21,example_user,active,Primary transformant clone
+HB101-pGLO-02,E. coli K-12 HB101,pGLO,AmpR,2026-03-21,example_user,active,Backup transformant clone

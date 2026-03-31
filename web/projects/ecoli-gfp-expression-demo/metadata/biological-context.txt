@@ -1,0 +1,27 @@
+project_title: E. coli pGLO Expression Demo
+organism: Escherichia coli K-12
+chassis: HB101
+bsl: BSL-1
+risk_group: RG1
+gmo_status: Contained use GMO
+intended_application: Reporter expression training and reproducibility benchmark
+environmental_conditions: Bench incubation with shaking in LB
+
+Host Physiology:
+growth_medium: LB broth and LB agar
+growth_temperature_c: 37
+growth_mode: Aerobic
+antibiotic_selection: Ampicillin 100 ug/mL
+
+Regulatory Context:
+institutional_approval: IBC-TRAIN-1001 (example)
+transport_constraints: BSL-1 non-pathogenic handling
+hazard_highlights: Beta-lactamase antibiotic resistance marker present
+waste_handling: Autoclave liquid and plate waste before disposal
+
+Design Assumptions:
+reporter_gene: sfGFP
+promoter: PBAD arabinose-inducible promoter with AraC regulation
+expected_phenotype: Elevated green fluorescence in pGLO transformants when L-arabinose is present
+controls_required: No-plasmid host, pGLO without arabinose, and media blank
+biological_limitations: Fluorescence varies with growth phase and plasmid burden

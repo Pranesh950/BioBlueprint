@@ -1,0 +1,7 @@
+[
+  {
+    "slug": "ecoli-gfp-expression-demo",
+    "title": "E. coli GFP Expression Demo",
+    "description": "A pGLO-focused reproducibility template for E. coli transformation, arabinose induction, plate-reader measurements, and analysis provenance."
+  }
+]

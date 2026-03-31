@@ -1,0 +1,18 @@
+{
+  "run_id": "EGD-PR-2026-03-22-A",
+  "status": "pass",
+  "checks": {
+    "missing_values": 0,
+    "blank_stability_pass": true,
+    "host_vs_gfp_separation_pass": true,
+    "max_replicate_cv_percent": 8.7,
+    "cv_threshold_percent": 20.0
+  },
+  "flags": [],
+  "notes": [
+    "All conditions present for all expected timepoints.",
+    "GFP clone shows increasing normalized fluorescence over host control."
+  ],
+  "reviewed_by": "example_user",
+  "review_date": "2026-03-22"
+}
