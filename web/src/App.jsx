@@ -29,7 +29,7 @@ function App() {
               <NavLink to="/" end className="brand">
                 BioBlueprint
               </NavLink>
-              <p className="brand-tagline">Full-stack reproducible bioengineering</p>
+              <p className="brand-tagline">Open-source bioengineering project sharing</p>
             </div>
             <nav className="topbar-nav" aria-label="Primary">
               <NavLink to="/" end className={getNavLinkClass}>Projects</NavLink>

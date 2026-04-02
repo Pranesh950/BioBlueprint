@@ -24,27 +24,16 @@ export default function AboutPage() {
       <section className="about-grid">
         <article className="about-section">
           <h2>Why existing platforms fall short</h2>
-          <ul>
-            <li><strong>GitHub</strong> is excellent for code, but not for complete wet-lab context by itself.</li>
-            <li><strong>Benchling</strong> is strong for notebooks and sequences, but not an open project collaboration hub.</li>
-            <li><strong>Data repositories</strong> store files but do not offer a clean project workflow.</li>
-            <li><strong>Drive folders</strong> turn into version confusion fast.</li>
-          </ul>
           <p>
-            In practice, teams end up stitching together code in one place, sequence files in another, and protocols somewhere else.
+            Researchers end up bouncing between GitHub for code, Benchling for sequences, Drive for data, and emails for protocols.
+            It's fragmented and hard to reproduce.
           </p>
         </article>
 
         <article className="about-section">
-          <h2>What BioBlueprint adds</h2>
-          <ul>
-            <li>Open, forkable project structure on GitHub</li>
-            <li>Single workspace for protocols, data, and analysis</li>
-            <li>Native support for common biological file formats</li>
-            <li>Clear onboarding path for contributors</li>
-          </ul>
+          <h2>What BioBlueprint does</h2>
           <p>
-            The result is simple: one project, one source of truth, and fewer reproducibility gaps.
+            Everything lives together: protocols, sequences, data, analysis code, and results. Push to GitHub, share a link, and others can fork your entire project.
           </p>
         </article>
       </section>
@@ -55,9 +44,6 @@ export default function AboutPage() {
           Publishing here is straightforward:
         </p>
         <ol>
-          <li>
-            Fork the <a href="https://github.com/Pranesh950/BioBlueprint" target="_blank" rel="noreferrer">BioBlueprint repository</a> on GitHub.
-          </li>
           <li>
             Create a folder for your project in <code>web/projects/your-project-name</code>. Choose a short, descriptive slug (no spaces).
           </li>
@@ -84,10 +70,10 @@ export default function AboutPage() {
           <li>
             Make sure the <code>slug</code> matches your folder name exactly.
           </li>
-          <li>
-            Commit and open a pull request. We'll review and merge it.
-          </li>
         </ol>
+        <p>
+          If you want help adding your project, or you're not comfortable using GitHub, email me at pranesh.shivaraj.k@gmail.com
+        </p>
       </section>
 
       <section className="about-section">

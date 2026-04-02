@@ -8,8 +8,8 @@ export default function RepoHeader({ project, fileCount, onDownload }) {
       </div>
 
       <div className="repo-header-actions">
-        <div className="repo-stat-card" aria-label={`${fileCount} files tracked`}>
-          <span className="repo-stat-label">Files tracked</span>
+        <div className="repo-stat-card" aria-label={`${fileCount} files`}>
+          <span className="repo-stat-label">Files</span>
           <strong className="repo-stat-value">{fileCount}</strong>
         </div>
         <button type="button" className="primary-button" onClick={onDownload}>

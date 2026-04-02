@@ -6,20 +6,20 @@ function pickRandomProject() {
 }
 
 export default function HomePage() {
-  const featuredProject = pickRandomProject()
+  const demoProject = pickRandomProject()
 
   return (
     <main className="page home-page">
       <section className="home-hero">
         <div className="home-hero-copy">
-          <p className="eyebrow">Platform</p>
-          <h1>Share the whole bioengineering stack, not just fragments.</h1>
+          <p className="eyebrow">Open-source demo</p>
+          <h1>Share entire bioengineering projects on one platform</h1>
           <p className="lead">
             BioBlueprint keeps protocols, code, sequences, STL files, and results in one versioned workspace.
           </p>
           <div className="hero-actions">
-            <Link className="primary-button" to={`/project/${featuredProject.slug}`}>
-              Explore featured project
+            <Link className="primary-button" to={`/project/${demoProject.slug}`}>
+              Explore demo project
             </Link>
             <Link className="secondary-button" to="/about">
               How to contribute
@@ -27,25 +27,19 @@ export default function HomePage() {
           </div>
         </div>
 
-        <aside className="home-hero-panel" aria-label="Platform snapshot">
-          <p className="hero-panel-eyebrow">Platform snapshot</p>
-          <dl className="hero-stats">
+        <aside className="home-hero-panel" aria-label="Demo project details">
+          <div className="demo-meta">
             <div>
-              <dt>Projects</dt>
+              <dt>Total projects</dt>
               <dd>{projects.length}</dd>
             </div>
             <div>
-              <dt>Structure</dt>
-              <dd>Folder-native</dd>
+              <dt>Demo project</dt>
+              <dd>
+                <Link to={`/project/${demoProject.slug}`}>{demoProject.title}</Link>
+              </dd>
             </div>
-            <div>
-              <dt>Workflow</dt>
-              <dd>Fork to publish</dd>
-            </div>
-          </dl>
-          <p className="hero-panel-note">
-            Featured project: <Link to={`/project/${featuredProject.slug}`}>{featuredProject.title}</Link>
-          </p>
+          </div>
         </aside>
       </section>
 
@@ -67,7 +61,6 @@ export default function HomePage() {
               </div>
 
               <div className="repo-row-side">
-                <span className="repo-row-meta">Open workspace</span>
                 <Link to={`/project/${project.slug}`} className="inline-link">View project</Link>
               </div>
             </article>

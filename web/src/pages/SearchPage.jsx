@@ -50,7 +50,6 @@ export default function SearchPage() {
                 </div>
 
                 <div className="repo-row-side">
-                  <span className="repo-row-meta">Open workspace</span>
                   <Link to={`/project/${project.slug}`} className="inline-link">View project</Link>
                 </div>
               </article>
