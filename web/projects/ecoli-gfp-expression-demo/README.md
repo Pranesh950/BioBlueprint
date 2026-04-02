@@ -1,121 +1,155 @@
 # E. coli GFP Expression Demo
 
-This project is written like an Instructables build so a new lab member can reproduce the full workflow end-to-end.
+This is a complete example of a bioengineering project on BioBlueprint. It walks you through transforming bacteria with a fluorescent plasmid, measuring the cells, and analyzing the data. Everything is here: the protocols, the raw data, the code to process it, and the results. If you can follow this, you can repeat it.
 
-## Intro
+## What We're Doing
 
-Goal: transform E. coli K-12 HB101 with the pGLO plasmid, induce expression with L-arabinose, measure OD600 and fluorescence, and regenerate the same processed tables and figures from raw data.
+We're taking E. coli bacteria and putting a plasmid (a circle of DNA) into them that makes them glow under UV light. Then we'll measure how much they grow and how bright they are, compared to normal bacteria without the plasmid.
 
-Expected biosafety level: BSL-1.
+**Safety:** This is BSL-1. The bacteria are harmless. Standard lab precautions apply.
 
-## Supplies
+## What You'll Need
 
-- E. coli K-12 HB101 competent cells
+- E. coli K-12 HB101 (competent cells)
 - pGLO plasmid DNA
 - LB media and agar
-- Ampicillin stock
-- L-arabinose
-- 96-well black clear-bottom plate
-- Sterile tips and tubes
-- Plate reader with OD600 and GFP channel (Ex 485 nm, Em 510-530 nm)
-- 37C shaking incubator
+- Ampicillin (antibiotic to select transformed cells)
+- L-arabinose (sugar to turn on the fluorescent genes)
+- 96-well plate (black, clear bottom)
+- Plate reader (one that measures OD600 and fluorescence around 510 nm)
+- Shaking incubator (37°C)
+- Basic sterile lab supplies
 
-## Before You Start
+## How This Project is Organized
 
-1. Read metadata/biological-context.txt.
-2. Confirm controls and acceptance criteria in protocols/induction-and-measurement.md.
-3. Verify project file map in docs/reproducibility-checklist.md.
+Before you start, take a look at the layout so you know where to find things:
 
-## Step 1: Transform Cells
+- **protocols/** → step-by-step instructions (you'll follow these)
+- **constructs/** → the genetic sequences (plasmid info)
+- **data/raw/** → the actual measurements from the plate reader
+- **data/processed/** → cleaned-up data after running scripts
+- **analysis/** → Python scripts that turn raw data into results
+- **results/** → figures and summaries
+- **docs/** → extra context and a checklist
 
-Follow protocols/transformation.md.
+## The Workflow
 
-What to capture:
-- Plating setup
-- Labeling strategy
-- Colony outcomes after incubation
+### Step 1: Transform the Cells
 
-## Step 2: Prepare Cultures for Measurement
+Read `protocols/transformation.md`. This tells you how to mix competent cells with plasmid DNA, recover them, and plate them out. Pay attention to:
 
-Use protocols/induction-and-measurement.md.
+- How you set up the plates
+- How you label everything (you'll have many plates)
+- Where colonies grow and what they look like
 
-Critical details:
-- Dilute to OD600 = 0.05
-- Dispense plate according to data/raw/metadata-sample-map.csv
-- Include media blank, host control, and pGLO transformant conditions
+### Step 2: Pick Colonies and Grow Overnight Cultures
 
-## Step 3: Run Plate Reader Timecourse
+Follow `protocols/induction-and-measurement.md`. You'll:
 
-Use a 30-minute interval for 4 hours with shaking between reads.
+- Pick colonies that grew from the transformation
+- Grow them in liquid culture overnight
+- Measure the starting cell density so you can dilute to OD600 = 0.05 for the experiment
 
-Output required:
-- data/raw/plate-reader-example.csv format
-- Columns: time_min, condition, replicate, od600, fluorescence_au
+### Step 3: Set Up the Plate Reader Experiment
 
-## Step 4: Process Raw Data
+Load the 96-well plate with your samples (follow the map in `data/raw/metadata-sample-map.csv`):
 
-Run:
+- Column A: media only (blank)
+- Column B: bacteria without plasmid (negative control)
+- Columns C-E: bacteria with pGLO plasmid (three replicates)
 
-python3 analysis/process_plate_data.py --raw data/raw/plate-reader-example.csv --map data/raw/metadata-sample-map.csv --out data/processed/summary-stats.csv
+Run the plate reader every 30 minutes for 4 hours. It will measure:
 
-## Step 5: Generate Plots
+- OD600 (cell growth)
+- Fluorescence (how bright the GFP is)
 
-Run:
+Save the results as a CSV file in the format shown in `data/raw/plate-reader-example.csv`.
 
-python3 analysis/plot_results.py --summary data/processed/summary-stats.csv --outdir results/figures
+### Step 4: Add L-arabinose (Optional)
 
-## Step 6: Run Simple Expression Model
+The pGLO plasmid only turns on the GFP genes if L-arabinose is present. Your experiment might test:
 
-Run:
+- Cultures with L-arabinose added (GFP should turn on)
+- Cultures without it (baseline)
 
-python3 analysis/simple-expression-model.py --out data/processed/model-sweep.csv
+See `protocols/induction-and-measurement.md` for details.
 
-## Step 7: Confirm Reproducibility
+### Step 5: Process the Raw Data
 
-Complete docs/reproducibility-checklist.md.
+Once you have your plate reader CSV, run:
 
-## Required Image Upload List
+```bash
+cd web/projects/ecoli-gfp-expression-demo
+python3 analysis/process_plate_data.py \
+  --raw data/raw/plate-reader-example.csv \
+  --map data/raw/metadata-sample-map.csv \
+  --out data/processed/summary-stats.csv
+```
 
-Create a folder named docs/images and upload these images with the exact filenames below.
+This script:
 
-1. 01-workbench-setup.jpg
-What to show: full bench layout with labeled reagents and sterile area.
+- Normalizes fluorescence by cell density (to account for growth differences)
+- Calculates fold-change compared to controls
+- Checks data quality
 
-2. 02-transformation-plating.jpg
-What to show: transformation recovery and plating workflow.
+The output goes to `data/processed/summary-stats.csv`.
 
-3. 03-colony-selection.jpg
-What to show: colony plate with selected colonies marked.
+### Step 6: Generate Figures
 
-4. 04-culture-tubes-labeled.jpg
-What to show: overnight cultures with clear condition labels.
+```bash
+python3 analysis/plot_results.py \
+  --summary data/processed/summary-stats.csv \
+  --outdir results/figures
+```
 
-5. 05-plate-map-before-read.jpg
-What to show: loaded 96-well plate before first read.
+This makes plots showing:
 
-6. 06-plate-reader-settings.jpg
-What to show: instrument method screen showing OD600 and GFP settings.
+- Growth curves (OD vs time)
+- Fluorescence over time
+- Comparison to controls
 
-7. 07-raw-export-preview.jpg
-What to show: first few rows of exported raw table.
+### Step 7: Optional—Run a Simple Model
 
-8. 08-analysis-script-run.jpg
-What to show: terminal run of processing script with output path visible.
+If you want to model GFP expression dynamics, run:
 
-9. 09-final-figure-preview.jpg
-What to show: generated fluorescence and growth plots.
+```bash
+python3 analysis/simple-expression-model.py \
+  --out data/processed/model-sweep.csv
+```
 
-10. 10-results-summary.jpg
-What to show: final comparison of host control vs pGLO transformant.
+This simulates different expression rates and plots them alongside your data.
 
-## Optional Advanced Uploads
+### Step 8: Check Reproducibility
 
-- 11-plasmid-map-screenshot.jpg
-- 12-gel-or-qc-image.jpg
-- 13-sanger-trace-preview.jpg
+Open `docs/reproducibility-checklist.md` and go through it. Did you capture everything? Are there notes for the next person? This is where you confirm the project is complete.
 
-## Molecular Files You Still Need to Add
+## Images (Optional but Helpful)
 
-- constructs/pGLO.gb
-- constructs/pGLO.fasta
-- Optional: constructs/sanger-traces (ab1 or zip)
+If you want to make this project easier for someone else to follow, take photos of each stage and put them in `docs/images/`. Name them like this:
+
+1. `01-workbench-setup.jpg` — your full bench with all reagents labeled
+2. `02-transformation-plating.jpg` — the transformation day, showing recovery and plating
+3. `03-colony-selection.jpg` — the plate with colonies, marked with which ones you picked
+4. `04-culture-tubes.jpg` — your overnight cultures, clearly labeled
+5. `05-plate-before-reader.jpg` — the loaded 96-well plate before the first read
+6. `06-plate-reader-settings.jpg` — your instrument setup (temperature, wavelengths, shaking)
+7. `07-raw-data-preview.jpg` — first few rows of the plate reader export
+8. `08-analysis-run.jpg` — terminal output showing the script running successfully
+9. `09-generated-figures.jpg` — your final plots
+10. `10-results-comparison.jpg` — control vs transformant side-by-side
+
+Optional bonus images:
+
+- Plasmid map screenshots
+- Gel electrophoresis or DNA quality checks
+- Sanger sequencing traces (if you have them)
+
+## One More Thing
+
+You also need:
+
+- `constructs/pGLO.gb` — GenBank file for the plasmid (so others can see the sequence)
+- `constructs/pGLO.fasta` — FASTA version of the sequence
+- Optional: `constructs/sanger-traces/` — if you verified the DNA by sequencing
+
+once you have these, your project is publication-ready for BioBlueprint.

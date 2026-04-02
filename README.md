@@ -1,33 +1,38 @@
-# bioengineeringhub
+# BioBlueprint
+
+A platform for sharing complete bioengineering projects: protocols, code, sequences, CAD files, and data all in one place.
 
 ## Local Development
 
-This repo runs as a frontend app:
+This repo is a React frontend app:
 
-- `web/`: React frontend
+- `web/`: React frontend (Vite)
 
-### 1. Configure environment
-
-No environment configuration is required for local viewing.
-
-### 2. Install dependencies
+### 1. Install dependencies
 
 ```bash
 cd web && npm install
 ```
 
-### 3. Run app
+### 2. Run locally
 
 ```bash
 cd web && npm run dev
 ```
 
-Then open the frontend URL printed by Vite.
+Open the URL printed by Vite in your browser.
 
-## Posting Guidance
+## Adding Your Project
 
-Before posting your own project, use the E. coli template structure as reference:
+Want to share your bioengineering project? Head to the **About** page once you run the app, or see [the About page in the UI](/web/src/pages/AboutPage.jsx) for full instructions.
 
-- Open `/project/ecoli-gfp-expression-demo`
-- Mirror the same level of detail in protocols, metadata, constructs, and data mapping
-- Keep project organization reproducible end to end
+Quick summary:
+1. Fork this repo
+2. Create a folder in `web/projects/your-project-name`
+3. Add files following the example structure (see `web/projects/ecoli-gfp-expression-demo/`)
+4. Register your project in `web/src/data/projects.json`
+5. Open a pull request
+
+## License
+
+Each project retains its own license. BioBlueprint itself is open source.

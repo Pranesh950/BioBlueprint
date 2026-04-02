@@ -17,19 +17,23 @@ export default function FileToolbar({ selectedFile, metadata }) {
 
   return (
     <header className="file-toolbar">
-      <div className="file-breadcrumb">
-        <span>projects</span>
-        {segments.map((segment) => (
-          <span key={segment.path} className={segment.isLast ? 'active-segment' : ''}>
-            / {segment.label}
-          </span>
-        ))}
+      <div className="file-toolbar-label">
+        <span className="toolbar-label-pill">File path</span>
+        <div className="file-breadcrumb">
+          <span className="breadcrumb-segment">projects</span>
+          {segments.map((segment) => (
+            <span key={segment.path} className={`breadcrumb-segment${segment.isLast ? ' active-segment' : ''}`}>
+              <span className="breadcrumb-separator">/</span>
+              {segment.label}
+            </span>
+          ))}
+        </div>
       </div>
 
       <div className="file-toolbar-meta">
-        <span>{metadata.language}</span>
-        <span>{metadata.lines} lines</span>
-        <span>{metadata.displayBytes}</span>
+        <span className="meta-chip">{metadata.language}</span>
+        <span className="meta-chip">{metadata.lines} lines</span>
+        <span className="meta-chip">{metadata.displayBytes}</span>
       </div>
     </header>
   )

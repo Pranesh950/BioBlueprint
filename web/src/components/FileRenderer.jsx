@@ -8,13 +8,16 @@ import DnaViewer from './renderers/DnaViewer'
 import BiologicalContextViewer from './renderers/BiologicalContextViewer'
 
 function JsonViewer({ content }) {
+  let formattedContent = content
+
   try {
     const parsed = JSON.parse(content)
-    const pretty = JSON.stringify(parsed, null, 2)
-    return <CodeViewer content={pretty} language="json" />
+    formattedContent = JSON.stringify(parsed, null, 2)
   } catch {
-    return <CodeViewer content={content} language="json" />
+    formattedContent = content
   }
+
+  return <CodeViewer content={formattedContent} language="json" />
 }
 
 export default function FileRenderer({ selectedFile, content, onOpenFile, availableFiles }) {

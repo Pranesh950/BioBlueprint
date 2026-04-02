@@ -4,57 +4,98 @@ export default function AboutPage() {
   return (
     <main className="page about-page">
       <section className="about-hero">
-        <p className="eyebrow">About</p>
-        <h1>Bioforge helps people share bio projects clearly</h1>
+        <p className="eyebrow">About BioBlueprint</p>
+        <h1>One place for complete bioengineering projects.</h1>
         <p className="lead">
-          The goal is simple: upload your project in a clean structure so someone else can understand it and repeat it.
+          Most teams split work across different tools and lose reproducibility. BioBlueprint keeps protocols, code,
+          sequence files, CAD/STL, data, and results together in one open project workspace.
         </p>
+
+        <div className="about-hero-chips" aria-label="Supported project assets">
+          <span>Protocols</span>
+          <span>Code</span>
+          <span>GenBank / FASTA</span>
+          <span>CAD / STL</span>
+          <span>Raw Data</span>
+          <span>Results</span>
+        </div>
+      </section>
+
+      <section className="about-grid">
+        <article className="about-section">
+          <h2>Why existing platforms fall short</h2>
+          <ul>
+            <li><strong>GitHub</strong> is excellent for code, but not for complete wet-lab context by itself.</li>
+            <li><strong>Benchling</strong> is strong for notebooks and sequences, but not an open project collaboration hub.</li>
+            <li><strong>Data repositories</strong> store files but do not offer a clean project workflow.</li>
+            <li><strong>Drive folders</strong> turn into version confusion fast.</li>
+          </ul>
+          <p>
+            In practice, teams end up stitching together code in one place, sequence files in another, and protocols somewhere else.
+          </p>
+        </article>
+
+        <article className="about-section">
+          <h2>What BioBlueprint adds</h2>
+          <ul>
+            <li>Open, forkable project structure on GitHub</li>
+            <li>Single workspace for protocols, data, and analysis</li>
+            <li>Native support for common biological file formats</li>
+            <li>Clear onboarding path for contributors</li>
+          </ul>
+          <p>
+            The result is simple: one project, one source of truth, and fewer reproducibility gaps.
+          </p>
+        </article>
       </section>
 
       <section className="about-section">
-        <h2>What this site is for</h2>
-        <ul>
-          <li>Sharing one project in one place.</li>
-          <li>Keeping protocols, constructs, data, and notes together.</li>
-          <li>Making your work easy for other people to follow.</li>
-        </ul>
-      </section>
-
-      <section className="about-section">
-        <h2>How to add your project to this repo</h2>
+        <h2>How to add your project</h2>
+        <p>
+          Publishing here is straightforward:
+        </p>
         <ol>
           <li>
-            Go to the GitHub repository:
-            <a href="https://github.com/Pranesh950/bioengineeringhub" target="_blank" rel="noreferrer"> github.com/Pranesh950/bioengineeringhub</a>
+            Fork the <a href="https://github.com/Pranesh950/BioBlueprint" target="_blank" rel="noreferrer">BioBlueprint repository</a> on GitHub.
           </li>
-          <li>Make a new project folder in <code>web/projects/your-project-slug</code>.</li>
-          <li>Add your files and folders inside that project folder (README, protocols, constructs, data, docs, and so on).</li>
           <li>
-            Add your project to <code>web/src/data/projects.json</code> with:
-            <code>slug</code>, <code>title</code>, and <code>description</code>.
+            Create a folder for your project in <code>web/projects/your-project-name</code>. Choose a short, descriptive slug (no spaces).
           </li>
-          <li>Make sure the <code>slug</code> in <code>projects.json</code> exactly matches your folder name.</li>
-          <li>Commit your changes and open a Pull Request.</li>
+          <li>
+            Organize your files inside that folder. There's no strict structure, but we recommend:
+            <ul className="project-structure-list">
+              <li><code>README.md</code> — overview and key findings</li>
+              <li><code>protocols/</code> — step-by-step instructions</li>
+              <li><code>constructs/</code> — sequences, plasmid maps, GenBank files</li>
+              <li><code>data/</code> — raw measurements, datasets</li>
+              <li><code>analysis/</code> — scripts, Jupyter notebooks</li>
+              <li><code>results/</code> — figures, processed data</li>
+              <li><code>docs/</code> — additional context, notes</li>
+            </ul>
+          </li>
+          <li>
+            Add a quick entry to <code>web/src/data/projects.json</code>:
+            <pre className="json-snippet">{`{
+  "slug": "your-project-name",
+  "title": "Your Project Title",
+  "description": "One sentence about what you did"
+}`}</pre>
+          </li>
+          <li>
+            Make sure the <code>slug</code> matches your folder name exactly.
+          </li>
+          <li>
+            Commit and open a pull request. We'll review and merge it.
+          </li>
         </ol>
       </section>
 
       <section className="about-section">
-        <h2>How your project appears in search</h2>
+        <h2>Use the demo as your template</h2>
         <p>
-          Search results come from <code>web/src/data/projects.json</code>.
-          If your project is not in that file, it will not show in the search page.
-        </p>
-        <p>
-          Your entry in <code>projects.json</code> and your folder in <code>web/projects/</code> both need to exist.
-        </p>
-      </section>
-
-      <section className="about-section">
-        <h2>Use the E. coli example first</h2>
-        <p>
-          Before adding your project, review
-          <Link to="/project/ecoli-gfp-expression-demo"> the E. coli GFP Expression Demo</Link>
-          and copy its structure style.
+          Start with the <Link to="/project/ecoli-gfp-expression-demo">E. coli GFP Expression Demo</Link>. It shows a complete,
+          reproducible structure from protocols to results. You can adapt the structure to your own organism,
+          hardware, or workflow.
         </p>
       </section>
     </main>

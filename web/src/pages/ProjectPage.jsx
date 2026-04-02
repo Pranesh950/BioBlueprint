@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { ChevronRight, ChevronDown, Folder, FolderOpen, FileText, FileCode2, Image as ImageIcon, Database, File as FileIcon, FileJson, Table } from 'lucide-react'
 import projects from '../data/projects.json'
@@ -7,6 +7,72 @@ import { downloadProjectZip, getProjectFiles, getProjectTree } from '../lib/proj
 import FileToolbar from '../components/FileToolbar'
 import FileRenderer from '../components/FileRenderer'
 import RepoHeader from '../components/RepoHeader'
+
+function getFileTone(name) {
+  const ext = name.includes('.') ? name.split('.').pop().toLowerCase() : ''
+
+  switch (ext) {
+    case 'md':
+    case 'txt':
+      return 'docs'
+    case 'js':
+    case 'jsx':
+    case 'py':
+    case 'ts':
+    case 'html':
+    case 'css':
+    case 'ipynb':
+      return 'code'
+    case 'json':
+    case 'csv':
+    case 'tsv':
+      return 'data'
+    case 'gb':
+    case 'gbk':
+    case 'dna':
+    case 'fasta':
+    case 'fa':
+      return 'sequence'
+    case 'png':
+    case 'jpg':
+    case 'jpeg':
+    case 'svg':
+      return 'media'
+    default:
+      return 'default'
+  }
+}
+
+function getFileLabel(name) {
+  if (!name.includes('.')) {
+    return 'FILE'
+  }
+
+  return name.split('.').pop().toUpperCase().slice(0, 4)
+}
+
+function getFolderTone(name) {
+  const normalized = name.toLowerCase()
+
+  switch (normalized) {
+    case 'protocols':
+      return 'protocols'
+    case 'constructs':
+      return 'constructs'
+    case 'data':
+      return 'data'
+    case 'analysis':
+      return 'analysis'
+    case 'results':
+      return 'results'
+    case 'docs':
+      return 'docs'
+    case 'metadata':
+      return 'metadata'
+    default:
+      return 'default'
+  }
+}
 
 function getFileIcon(name) {
   const ext = name.split('.').pop().toLowerCase()
@@ -52,31 +118,35 @@ function collectFolderPaths(node, setRef) {
 
 function FileTree({ node, expandedFolders, onToggleFolder, onSelectFile, activeFile }) {
   if (node.type === 'file') {
+    const fileTone = getFileTone(node.name)
+
     return (
       <li>
         <button
           type="button"
-          className={`tree-file ${activeFile === node.path ? 'active' : ''}`}
+          className={`tree-file tone-${fileTone} ${activeFile === node.path ? 'active' : ''}`}
           onClick={() => onSelectFile(node.path)}
         >
           {getFileIcon(node.name)}
           <span className="tree-text">{node.name}</span>
+          <span className={`tree-file-pill tone-${fileTone}`}>{getFileLabel(node.name)}</span>
         </button>
       </li>
     )
   }
 
   const isExpanded = node.path ? expandedFolders.has(node.path) : true
+  const folderTone = getFolderTone(node.name)
 
   return (
     <li>
       {node.path ? (
         <button
           type="button"
-          className="tree-folder"
+          className={`tree-folder tone-${folderTone}`}
           onClick={() => onToggleFolder(node.path)}
         >
-          {isExpanded ? <ChevronDown className="tree-chevron" size={16} /> : <ChevronRight className="tree-chevron" size={16} />}
+          {isExpanded ? <ChevronDown className="tree-chevron expanded" size={16} /> : <ChevronRight className="tree-chevron" size={16} />}
           {isExpanded ? <FolderOpen className="tree-icon" size={16} /> : <Folder className="tree-icon" size={16} />}
           <span className="tree-text">{node.name}</span>
         </button>
@@ -107,15 +177,12 @@ export default function ProjectPage() {
   const projectMeta = projects.find((project) => project.slug === slug)
   const files = useMemo(() => getProjectFiles(slug), [slug])
   const tree = useMemo(() => getProjectTree(slug), [slug])
-  const [selectedFile, setSelectedFile] = useState('')
-  const [expandedFolders, setExpandedFolders] = useState(new Set())
-
-  useEffect(() => {
+  const [expandedFolders, setExpandedFolders] = useState(() => {
     const initialFolders = new Set()
     collectFolderPaths(tree, initialFolders)
-    setExpandedFolders(initialFolders)
-    setSelectedFile(files[0]?.path || '')
-  }, [tree, files])
+    return initialFolders
+  })
+  const [selectedFile, setSelectedFile] = useState(() => files[0]?.path || '')
 
   const selectedEntry = files.find((file) => file.path === selectedFile)
   const selectedContent = selectedEntry?.content
@@ -162,6 +229,11 @@ export default function ProjectPage() {
 
       <section className="repo-layout">
         <aside className="repo-sidebar tree-panel">
+          <header className="tree-panel-head">
+            <p>Project files</p>
+            <span>{files.length} files</span>
+          </header>
+
           {files.length ? (
             <ul className="tree-list">
               <FileTree
