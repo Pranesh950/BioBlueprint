@@ -5,83 +5,92 @@ export default function AboutPage() {
     <main className="page about-page">
       <section className="about-hero">
         <p className="eyebrow">About BioBlueprint</p>
-        <h1>One place for complete bioengineering projects.</h1>
+        <h1>A discovery catalog for reusable project resources.</h1>
         <p className="lead">
-          Most teams split work across different tools and lose reproducibility. BioBlueprint keeps protocols, code,
-          sequence files, CAD/STL, data, and results together in one open project workspace.
+          BioBlueprint focuses on discoverability. Every listing is designed to quickly answer what a resource is,
+          who to credit, which license applies, and where the canonical source lives.
         </p>
 
         <div className="about-hero-chips" aria-label="Supported project assets">
-          <span>Protocols</span>
-          <span>Code</span>
-          <span>GenBank / FASTA</span>
-          <span>CAD / STL</span>
-          <span>Raw Data</span>
-          <span>Results</span>
+          <span>MIT Resources</span>
+          <span>0BSD Resources</span>
+          <span>Attribution First</span>
+          <span>Source Linked</span>
+          <span>Facet Search</span>
+          <span>Category Discovery</span>
         </div>
       </section>
 
       <section className="about-grid">
         <article className="about-section">
-          <h2>Why existing platforms fall short</h2>
+          <h2>What this catalog lists</h2>
           <p>
-            Researchers end up bouncing between GitHub for code, Benchling for sequences, Drive for data, and emails for protocols.
-            It's fragmented and hard to reproduce.
+            We index repositories and project resources relevant to bioengineering workflows, learning, analysis,
+            visualization, and synthetic biology. Listings can be narrow utilities or larger reference collections.
+          </p>
+          <p>
+            Browse everything from the <Link to="/catalog">catalog page</Link>, then filter by license,
+            category, organism context, and tags.
           </p>
         </article>
 
         <article className="about-section">
-          <h2>What BioBlueprint does</h2>
+          <h2>Attribution and licensing policy</h2>
           <p>
-            Everything lives together: protocols, sequences, data, analysis code, and results. Push to GitHub, share a link, and others can fork your entire project.
+            Each listed resource must include attribution and a canonical source URL. MIT and 0BSD listings are
+            supported, and the exact license should be represented with an SPDX identifier and license link.
           </p>
+          <ul className="project-structure-list">
+            <li>Required: attribution name, source repository URL, license badge, and license link.</li>
+            <li>Recommended: category, organism context, and descriptive tags.</li>
+            <li>Expected: metadata should match what the original repository publishes.</li>
+          </ul>
         </article>
       </section>
 
       <section className="about-section">
-        <h2>How to add your project</h2>
+        <h2>How to submit a resource</h2>
         <p>
-          Publishing here is straightforward:
+          Submit with complete metadata so discovery, attribution, and reuse checks are easy for everyone:
         </p>
         <ol>
           <li>
-            Create a folder for your project in <code>web/projects/your-project-name</code>. Choose a short, descriptive slug (no spaces).
+            Pick a unique slug and title for your listing.
           </li>
           <li>
-            Organize your files inside that folder. There's no strict structure, but we recommend:
-            <ul className="project-structure-list">
-              <li><code>README.md</code> — overview and key findings</li>
-              <li><code>protocols/</code> — step-by-step instructions</li>
-              <li><code>constructs/</code> — sequences, plasmid maps, GenBank files</li>
-              <li><code>data/</code> — raw measurements, datasets</li>
-              <li><code>analysis/</code> — scripts, Jupyter notebooks</li>
-              <li><code>results/</code> — figures, processed data</li>
-              <li><code>docs/</code> — additional context, notes</li>
-            </ul>
+            Include canonical attribution and source references from the original project owner.
           </li>
           <li>
-            Add a quick entry to <code>web/src/data/projects.json</code>:
+            Add a catalog entry to <code>web/src/data/projects.json</code> using this shape:
             <pre className="json-snippet">{`{
-  "slug": "your-project-name",
-  "title": "Your Project Title",
-  "description": "One sentence about what you did"
+  "slug": "resource-slug",
+  "title": "Resource Title",
+  "description": "Clear one-sentence summary",
+  "category": "Toolkit",
+  "organism": "General",
+  "licenseSpdx": "MIT",
+  "licenseName": "MIT License",
+  "licenseUrl": "https://opensource.org/license/mit/",
+  "attributionName": "owner-or-team",
+  "attributionUrl": "https://github.com/owner",
+  "sourceUrl": "https://github.com/owner/repo",
+  "tags": ["example", "resource"]
 }`}</pre>
           </li>
           <li>
-            Make sure the <code>slug</code> matches your folder name exactly.
+            Verify the license and attribution fields against the source repository before opening a pull request.
           </li>
         </ol>
         <p>
-          If you want help adding your project, or you're not comfortable using GitHub, email me at pranesh.shivaraj.k@gmail.com
+          Need help submitting or correcting attribution? Email pranesh.shivaraj.k@gmail.com.
         </p>
       </section>
 
       <section className="about-section">
-        <h2>Use the demo as your template</h2>
+        <h2>Before you publish</h2>
         <p>
-          Start with the <Link to="/project/ecoli-gfp-expression-demo">E. coli GFP Expression Demo</Link>. It shows a complete,
-          reproducible structure from protocols to results. You can adapt the structure to your own organism,
-          hardware, or workflow.
+          Confirm that license labels, attribution names, and source links are accurate. This keeps the catalog
+          trustworthy and makes reuse safe for everyone.
         </p>
       </section>
     </main>
