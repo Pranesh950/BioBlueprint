@@ -1127,7 +1127,7 @@ a:hover {
 
   .repo-list-head,
   .repo-row {
-    grid-template-columns: 1fr;
+    grid-template-columns: auto 1fr;
   }
 
   .file-toolbar {
@@ -1549,7 +1549,8 @@ h3,
 }
 
 .repo-row {
-  grid-template-columns: 1fr auto;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: var(--space-4);
   padding: var(--space-5);
@@ -1558,6 +1559,21 @@ h3,
 
 .repo-row:hover {
   background: var(--interactive-hover);
+}
+
+.repo-row-image {
+  display: grid;
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.repo-row-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .repo-row-main h2 {
@@ -2315,6 +2331,11 @@ h3,
     gap: var(--space-3);
   }
 
+
+  .repo-row-image {
+    width: 60px;
+    height: 60px;
+  }
   .topbar-nav {
     width: fit-content;
   }

@@ -115,6 +115,11 @@ export default function SearchPage() {
           <div className="repo-list-body">
             {filteredProjects.map((project) => (
               <article key={project.slug} className="repo-row">
+                {project.imageUrl && (
+                  <div className="repo-row-image">
+                    <img src={project.imageUrl} alt={project.title} />
+                  </div>
+                )}
                 <div className="repo-row-main">
                   <p className="repo-row-label">{project.category}</p>
                   <h2>

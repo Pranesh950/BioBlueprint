@@ -27,8 +27,7 @@ export default function HomePage() {
           <p className="eyebrow">Scientist-Curated Catalog</p>
           <h1>Find reputable bioinformatics projects with clear reuse rights.</h1>
           <p className="lead">
-            BioBlueprint indexes actively used open-source projects for analysis, workflows, and genomics tooling.
-            Each listing is focused on scientific utility, then linked directly to the canonical repository.
+            Open-source tools for genomics, analysis, and workflows.
           </p>
           <div className="hero-actions">
             <Link className="primary-button" to="/catalog">
@@ -61,7 +60,7 @@ export default function HomePage() {
             </div>
           </dl>
           <p className="hero-panel-note">
-            Learning-only repositories are intentionally excluded to keep the catalog focused on production scientific work.
+            No learning-only resources.
           </p>
         </aside>
       </section>
@@ -75,6 +74,11 @@ export default function HomePage() {
         <div className="repo-list-body">
           {featuredResources.map((resource) => (
             <article key={resource.slug} className="repo-row">
+              {resource.imageUrl && (
+                <div className="repo-row-image">
+                  <img src={resource.imageUrl} alt={resource.title} />
+                </div>
+              )}
               <div className="repo-row-main">
                 <p className="repo-row-label">{resource.category}</p>
                 <h2>

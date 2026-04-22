@@ -22,30 +22,23 @@ export default function ProjectPage() {
 
       <section className="resource-detail-grid" aria-label="Resource details">
         <article className="resource-section-card">
-          <h2>Scientific use</h2>
+          <h2>Details</h2>
           <p>
             {resource.description}
           </p>
         </article>
 
         <article className="resource-section-card">
-          <h2>Source and legal reuse</h2>
+          <h2>License & source</h2>
           <p>
-            Maintained by <strong>{resource.attributionName}</strong>. Reuse is governed by
-            {' '}
-            <strong>{resource.licenseName}</strong>
-            {' '}
-            ({resource.licenseSpdx}).
+            <strong>{resource.licenseName}</strong> ({resource.licenseSpdx})
           </p>
           <ul className="resource-link-list">
             <li>
-              <a href={resource.sourceUrl} target="_blank" rel="noreferrer">Open canonical source repository</a>
+              <a href={resource.sourceUrl} target="_blank" rel="noreferrer">Repository</a>
             </li>
             <li>
-              <a href={resource.attributionUrl} target="_blank" rel="noreferrer">View maintainer profile</a>
-            </li>
-            <li>
-              <a href={resource.licenseUrl} target="_blank" rel="noreferrer">Read license terms</a>
+              <a href={resource.licenseUrl} target="_blank" rel="noreferrer">License</a>
             </li>
           </ul>
         </article>
