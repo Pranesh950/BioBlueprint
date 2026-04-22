@@ -54,7 +54,7 @@ function App() {
               id="project-search"
               name="q"
               type="search"
-              placeholder="Search resources, tags, licenses, organisms"
+              placeholder="Search projects, methods, and licenses"
               defaultValue={searchDefaultValue}
               aria-label="Search resources"
             />

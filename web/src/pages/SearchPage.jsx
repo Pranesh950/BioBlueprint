@@ -7,8 +7,6 @@ export default function SearchPage() {
   const query = searchParams.get('q') || ''
   const license = searchParams.get('license') || 'all'
   const category = searchParams.get('category') || 'all'
-  const organism = searchParams.get('organism') || 'all'
-  const tag = searchParams.get('tag') || 'all'
   const normalizedQuery = query.trim().toLowerCase()
 
   const filterOptions = useMemo(() => {
@@ -17,8 +15,6 @@ export default function SearchPage() {
     return {
       licenses: unique(projects.map((resource) => resource.licenseSpdx)),
       categories: unique(projects.map((resource) => resource.category)),
-      organisms: unique(projects.map((resource) => resource.organism)),
-      tags: unique(projects.flatMap((resource) => resource.tags || [])),
     }
   }, [])
 
@@ -38,17 +34,15 @@ export default function SearchPage() {
     return projects.filter((project) => {
       const matchesLicense = license === 'all' || project.licenseSpdx === license
       const matchesCategory = category === 'all' || project.category === category
-      const matchesOrganism = organism === 'all' || project.organism === organism
-      const matchesTag = tag === 'all' || (project.tags || []).includes(tag)
 
-      const haystack = `${project.title} ${project.description} ${project.slug} ${project.category} ${project.organism} ${project.licenseSpdx} ${(project.tags || []).join(' ')}`.toLowerCase()
+      const haystack = `${project.title} ${project.description} ${project.slug} ${project.category} ${project.licenseSpdx} ${(project.tags || []).join(' ')}`.toLowerCase()
       const matchesQuery = !normalizedQuery || haystack.includes(normalizedQuery)
 
-      return matchesLicense && matchesCategory && matchesOrganism && matchesTag && matchesQuery
+      return matchesLicense && matchesCategory && matchesQuery
     })
-  }, [category, license, normalizedQuery, organism, tag])
+  }, [category, license, normalizedQuery])
 
-  const hasActiveFilters = Boolean(query || license !== 'all' || category !== 'all' || organism !== 'all' || tag !== 'all')
+  const hasActiveFilters = Boolean(query || license !== 'all' || category !== 'all')
 
   const resetFilters = () => {
     if (query) {
@@ -67,7 +61,7 @@ export default function SearchPage() {
         <p>
           {query
             ? `Showing matches for "${query}" with your active filters.`
-            : 'Use license, category, organism, and tag filters to narrow the catalog.'}
+            : 'Use category and license filters to narrow the catalog.'}
         </p>
         <p className="result-meta">{filteredProjects.length} results from {projects.length} indexed resources</p>
       </section>
@@ -102,33 +96,6 @@ export default function SearchPage() {
             </select>
           </label>
 
-          <label className="filter-field" htmlFor="organism-filter">
-            <span>Organism</span>
-            <select
-              id="organism-filter"
-              value={organism}
-              onChange={(event) => updateFilter('organism', event.target.value)}
-            >
-              <option value="all">All organisms</option>
-              {filterOptions.organisms.map((organismOption) => (
-                <option key={organismOption} value={organismOption}>{organismOption}</option>
-              ))}
-            </select>
-          </label>
-
-          <label className="filter-field" htmlFor="tag-filter">
-            <span>Tag</span>
-            <select
-              id="tag-filter"
-              value={tag}
-              onChange={(event) => updateFilter('tag', event.target.value)}
-            >
-              <option value="all">All tags</option>
-              {filterOptions.tags.map((tagOption) => (
-                <option key={tagOption} value={tagOption}>{tagOption}</option>
-              ))}
-            </select>
-          </label>
         </div>
 
         {hasActiveFilters ? (
@@ -156,13 +123,6 @@ export default function SearchPage() {
                   <p>{project.description}</p>
                   <div className="resource-meta-row">
                     <span className="repo-row-meta">{project.licenseSpdx}</span>
-                    <span className="repo-row-meta">{project.organism}</span>
-                    <span className="repo-row-meta">By {project.attributionName}</span>
-                  </div>
-                  <div className="resource-tags" aria-label="Resource tags">
-                    {project.tags.map((resourceTag) => (
-                      <span key={`${project.slug}-${resourceTag}`} className="resource-chip">{resourceTag}</span>
-                    ))}
                   </div>
                 </div>
 

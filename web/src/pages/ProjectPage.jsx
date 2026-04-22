@@ -22,54 +22,32 @@ export default function ProjectPage() {
 
       <section className="resource-detail-grid" aria-label="Resource details">
         <article className="resource-section-card">
-          <h2>Attribution</h2>
+          <h2>Scientific use</h2>
           <p>
-            This listing credits <strong>{resource.attributionName}</strong> as the source maintainer.
-            Always retain attribution when sharing derivatives.
+            {resource.description}
+          </p>
+        </article>
+
+        <article className="resource-section-card">
+          <h2>Source and legal reuse</h2>
+          <p>
+            Maintained by <strong>{resource.attributionName}</strong>. Reuse is governed by
+            {' '}
+            <strong>{resource.licenseName}</strong>
+            {' '}
+            ({resource.licenseSpdx}).
           </p>
           <ul className="resource-link-list">
             <li>
-              <a href={resource.attributionUrl} target="_blank" rel="noreferrer">View attribution profile</a>
-            </li>
-            <li>
               <a href={resource.sourceUrl} target="_blank" rel="noreferrer">Open canonical source repository</a>
             </li>
+            <li>
+              <a href={resource.attributionUrl} target="_blank" rel="noreferrer">View maintainer profile</a>
+            </li>
+            <li>
+              <a href={resource.licenseUrl} target="_blank" rel="noreferrer">Read license terms</a>
+            </li>
           </ul>
-        </article>
-
-        <article className="resource-section-card">
-          <h2>License and reuse</h2>
-          <p>
-            <strong>{resource.title}</strong> is listed as <strong>{resource.licenseName}</strong> ({resource.licenseSpdx}).
-          </p>
-          <p>
-            Review the original license text before redistributing, embedding, or modifying this resource.
-          </p>
-          <a href={resource.licenseUrl} className="inline-link" target="_blank" rel="noreferrer">
-            Read license terms
-          </a>
-        </article>
-
-        <article className="resource-section-card">
-          <h2>Discovery metadata</h2>
-          <p>
-            Category: <strong>{resource.category}</strong>
-            {' · '}
-            Organism: <strong>{resource.organism}</strong>
-          </p>
-          <div className="resource-tags" aria-label="Resource tags">
-            {resource.tags.map((tag) => (
-              <span key={`${resource.slug}-${tag}`} className="resource-chip">{tag}</span>
-            ))}
-          </div>
-          <div className="resource-actions-row">
-            <Link to={`/catalog?category=${encodeURIComponent(resource.category)}`} className="inline-link">
-              Find more in {resource.category}
-            </Link>
-            <Link to={`/catalog?license=${encodeURIComponent(resource.licenseSpdx)}`} className="inline-link">
-              Explore {resource.licenseSpdx} resources
-            </Link>
-          </div>
         </article>
       </section>
     </main>

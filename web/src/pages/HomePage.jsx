@@ -17,18 +17,18 @@ function buildCategoryGroups(resources) {
 export default function HomePage() {
   const featuredResources = projects.filter((resource) => resource.featured).slice(0, 4)
   const categoryGroups = buildCategoryGroups(projects)
-  const mitCount = projects.filter((resource) => resource.licenseSpdx === 'MIT').length
-  const zeroBsdCount = projects.filter((resource) => resource.licenseSpdx === '0BSD').length
+  const permissiveLicenseCount = projects.filter((resource) => ['MIT', 'BSD-3-Clause', 'Apache-2.0'].includes(resource.licenseSpdx)).length
+  const workflowCount = projects.filter((resource) => resource.category === 'Workflow').length
 
   return (
     <main className="page home-page">
       <section className="home-hero">
         <div className="home-hero-copy">
-          <p className="eyebrow">Resource Discovery</p>
-          <h1>Find reusable projects with clear licensing and attribution.</h1>
+          <p className="eyebrow">Scientist-Curated Catalog</p>
+          <h1>Find reputable bioinformatics projects with clear reuse rights.</h1>
           <p className="lead">
-            BioBlueprint is now a catalog-first index for discoverable project resources. Browse by category,
-            filter by license, and jump directly to the original source.
+            BioBlueprint indexes actively used open-source projects for analysis, workflows, and genomics tooling.
+            Each listing is focused on scientific utility, then linked directly to the canonical repository.
           </p>
           <div className="hero-actions">
             <Link className="primary-button" to="/catalog">
@@ -48,12 +48,12 @@ export default function HomePage() {
               <dd>{projects.length}</dd>
             </div>
             <div>
-              <dt>MIT resources</dt>
-              <dd>{mitCount}</dd>
+              <dt>Permissive licenses</dt>
+              <dd>{permissiveLicenseCount}</dd>
             </div>
             <div>
-              <dt>0BSD resources</dt>
-              <dd>{zeroBsdCount}</dd>
+              <dt>Workflow tools</dt>
+              <dd>{workflowCount}</dd>
             </div>
             <div>
               <dt>Categories</dt>
@@ -61,7 +61,7 @@ export default function HomePage() {
             </div>
           </dl>
           <p className="hero-panel-note">
-            Every listing includes a source link and attribution details so reuse decisions are fast and transparent.
+            Learning-only repositories are intentionally excluded to keep the catalog focused on production scientific work.
           </p>
         </aside>
       </section>
@@ -83,13 +83,6 @@ export default function HomePage() {
                 <p>{resource.description}</p>
                 <div className="resource-meta-row">
                   <span className="repo-row-meta">{resource.licenseSpdx}</span>
-                  <span className="repo-row-meta">{resource.organism}</span>
-                  <span className="repo-row-meta">By {resource.attributionName}</span>
-                </div>
-                <div className="resource-tags" aria-label="Resource tags">
-                  {resource.tags.map((tag) => (
-                    <span key={`${resource.slug}-${tag}`} className="resource-chip">{tag}</span>
-                  ))}
                 </div>
               </div>
 
@@ -114,7 +107,7 @@ export default function HomePage() {
               {resources.slice(0, 4).map((resource) => (
                 <li key={resource.slug}>
                   <Link to={`/resource/${resource.slug}`}>{resource.title}</Link>
-                  <p>{resource.licenseSpdx} · {resource.attributionName}</p>
+                  <p>{resource.description}</p>
                 </li>
               ))}
             </ul>

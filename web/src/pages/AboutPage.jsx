@@ -7,14 +7,15 @@ export default function AboutPage() {
         <p className="eyebrow">About BioBlueprint</p>
         <h1>A discovery catalog for reusable project resources.</h1>
         <p className="lead">
-          BioBlueprint focuses on discoverability. Every listing is designed to quickly answer what a resource is,
-          who to credit, which license applies, and where the canonical source lives.
+          BioBlueprint focuses on production-ready scientific software. Every listing explains practical research value,
+          links to the canonical source, and includes a verifiable open-source license.
         </p>
 
         <div className="about-hero-chips" aria-label="Supported project assets">
           <span>MIT Resources</span>
-          <span>0BSD Resources</span>
-          <span>Attribution First</span>
+          <span>BSD-3-Clause Resources</span>
+          <span>Apache-2.0 Resources</span>
+          <span>Scientist Curated</span>
           <span>Source Linked</span>
           <span>Facet Search</span>
           <span>Category Discovery</span>
@@ -25,24 +26,24 @@ export default function AboutPage() {
         <article className="about-section">
           <h2>What this catalog lists</h2>
           <p>
-            We index repositories and project resources relevant to bioengineering workflows, learning, analysis,
-            visualization, and synthetic biology. Listings can be narrow utilities or larger reference collections.
+            We index reputable repositories used in real bioinformatics and bioengineering workflows,
+            including analysis toolkits, genomics utilities, and workflow engines.
           </p>
           <p>
-            Browse everything from the <Link to="/catalog">catalog page</Link>, then filter by license,
-            category, organism context, and tags.
+            Browse everything from the <Link to="/catalog">catalog page</Link>, then filter by license
+            and category. Learning-only tutorials and course repositories are not listed.
           </p>
         </article>
 
         <article className="about-section">
           <h2>Attribution and licensing policy</h2>
           <p>
-            Each listed resource must include attribution and a canonical source URL. MIT and 0BSD listings are
-            supported, and the exact license should be represented with an SPDX identifier and license link.
+            Each listed resource must include attribution and a canonical source URL. SPDX licenses are required,
+            and the license label is verified against the source repository.
           </p>
           <ul className="project-structure-list">
             <li>Required: attribution name, source repository URL, license badge, and license link.</li>
-            <li>Recommended: category, organism context, and descriptive tags.</li>
+            <li>Recommended: concise scientist-focused description and category.</li>
             <li>Expected: metadata should match what the original repository publishes.</li>
           </ul>
         </article>
