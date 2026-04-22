@@ -13,8 +13,14 @@
     "attributionUrl": "https://github.com/plotly",
     "sourceUrl": "https://github.com/plotly/dash-bio",
     "imageUrl": "https://avatars.githubusercontent.com/u/5997976?s=200&v=4",
-    "tags": ["dash", "sequence", "molecular-visualization", "assays"],
-    "featured": true
+    "tags": [
+      "dash",
+      "sequence",
+      "molecular-visualization",
+      "assays"
+    ],
+    "featured": true,
+    "screenshotUrl": null
   },
   {
     "slug": "scanpy",
@@ -30,8 +36,14 @@
     "attributionUrl": "https://github.com/scverse",
     "sourceUrl": "https://github.com/scverse/scanpy",
     "imageUrl": "https://avatars.githubusercontent.com/u/68919549?s=200&v=4",
-    "tags": ["single-cell", "scrna-seq", "clustering", "python"],
-    "featured": true
+    "tags": [
+      "single-cell",
+      "scrna-seq",
+      "clustering",
+      "python"
+    ],
+    "featured": true,
+    "screenshotUrl": "https://scanpy.readthedocs.io/en/stable/_images/pbmc3k.png"
   },
   {
     "slug": "snakemake",
@@ -47,8 +59,14 @@
     "attributionUrl": "https://github.com/snakemake",
     "sourceUrl": "https://github.com/snakemake/snakemake",
     "imageUrl": "https://avatars.githubusercontent.com/u/33450111?s=200&v=4",
-    "tags": ["workflow", "reproducibility", "pipelines", "hpc"],
-    "featured": true
+    "tags": [
+      "workflow",
+      "reproducibility",
+      "pipelines",
+      "hpc"
+    ],
+    "featured": true,
+    "screenshotUrl": null
   },
   {
     "slug": "nextflow",
@@ -64,8 +82,14 @@
     "attributionUrl": "https://github.com/nextflow-io",
     "sourceUrl": "https://github.com/nextflow-io/nextflow",
     "imageUrl": "https://avatars.githubusercontent.com/u/15811334?s=200&v=4",
-    "tags": ["workflow", "omics", "cloud", "containers"],
-    "featured": true
+    "tags": [
+      "workflow",
+      "omics",
+      "cloud",
+      "containers"
+    ],
+    "featured": true,
+    "screenshotUrl": null
   },
   {
     "slug": "scikit-bio",
@@ -81,8 +105,14 @@
     "attributionUrl": "https://github.com/scikit-bio",
     "sourceUrl": "https://github.com/scikit-bio/scikit-bio",
     "imageUrl": "https://avatars.githubusercontent.com/u/8555425?s=200&v=4",
-    "tags": ["microbiome", "diversity", "ordination", "statistics"],
-    "featured": false
+    "tags": [
+      "microbiome",
+      "diversity",
+      "ordination",
+      "statistics"
+    ],
+    "featured": false,
+    "screenshotUrl": null
   },
   {
     "slug": "bedtools2",
@@ -98,8 +128,14 @@
     "attributionUrl": "https://github.com/arq5x",
     "sourceUrl": "https://github.com/arq5x/bedtools2",
     "imageUrl": "https://avatars.githubusercontent.com/u/72426?s=200&v=4",
-    "tags": ["genomic-intervals", "coverage", "annotation", "cli"],
-    "featured": false
+    "tags": [
+      "genomic-intervals",
+      "coverage",
+      "annotation",
+      "cli"
+    ],
+    "featured": false,
+    "screenshotUrl": null
   },
   {
     "slug": "pysam",
@@ -115,8 +151,14 @@
     "attributionUrl": "https://github.com/pysam-developers",
     "sourceUrl": "https://github.com/pysam-developers/pysam",
     "imageUrl": "https://avatars.githubusercontent.com/u/9311231?s=200&v=4",
-    "tags": ["sam-bam", "vcf", "python", "sequencing"],
-    "featured": false
+    "tags": [
+      "sam-bam",
+      "vcf",
+      "python",
+      "sequencing"
+    ],
+    "featured": false,
+    "screenshotUrl": null
   },
   {
     "slug": "igv-js",
@@ -132,8 +174,14 @@
     "attributionUrl": "https://github.com/igvteam",
     "sourceUrl": "https://github.com/igvteam/igv.js",
     "imageUrl": "https://avatars.githubusercontent.com/u/3871620?s=200&v=4",
-    "tags": ["genome-browser", "variants", "alignments", "web"],
-    "featured": false
+    "tags": [
+      "genome-browser",
+      "variants",
+      "alignments",
+      "web"
+    ],
+    "featured": false,
+    "screenshotUrl": null
   },
   {
     "slug": "noodles",
@@ -149,8 +197,14 @@
     "attributionUrl": "https://github.com/zaeleus",
     "sourceUrl": "https://github.com/zaeleus/noodles",
     "imageUrl": "https://avatars.githubusercontent.com/u/4042?s=200&v=4",
-    "tags": ["rust", "genomics-io", "bam", "vcf"],
-    "featured": false
+    "tags": [
+      "rust",
+      "genomics-io",
+      "bam",
+      "vcf"
+    ],
+    "featured": false,
+    "screenshotUrl": null
   },
   {
     "slug": "rust-bio",
@@ -166,8 +220,14 @@
     "attributionUrl": "https://github.com/rust-bio",
     "sourceUrl": "https://github.com/rust-bio/rust-bio",
     "imageUrl": "https://avatars.githubusercontent.com/u/19210522?s=200&v=4",
-    "tags": ["rust", "algorithms", "alignment", "sequence-analysis"],
-    "featured": false
+    "tags": [
+      "rust",
+      "algorithms",
+      "alignment",
+      "sequence-analysis"
+    ],
+    "featured": false,
+    "screenshotUrl": null
   },
   {
     "slug": "nf-core-tools",
@@ -183,7 +243,13 @@
     "attributionUrl": "https://github.com/nf-core",
     "sourceUrl": "https://github.com/nf-core/tools",
     "imageUrl": "https://avatars.githubusercontent.com/u/53055541?s=200&v=4",
-    "tags": ["workflow", "nextflow", "linting", "standards"],
-    "featured": false
+    "tags": [
+      "workflow",
+      "nextflow",
+      "linting",
+      "standards"
+    ],
+    "featured": false,
+    "screenshotUrl": null
   }
 ]

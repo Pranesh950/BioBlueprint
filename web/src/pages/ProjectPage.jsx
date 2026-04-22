@@ -20,6 +20,12 @@ export default function ProjectPage() {
     <main className="page repo-page resource-page">
       <RepoHeader project={resource} />
 
+      {resource.screenshotUrl && (
+        <section className="resource-screenshot" aria-label="Project screenshot">
+          <img src={resource.screenshotUrl} alt={`${resource.title} screenshot`} />
+        </section>
+      )}
+
       <section className="resource-detail-grid" aria-label="Resource details">
         <article className="resource-section-card">
           <h2>Details</h2>

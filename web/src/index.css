@@ -2212,6 +2212,20 @@ h3,
   gap: var(--space-5);
 }
 
+.resource-screenshot {
+  display: grid;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  max-height: 500px;
+  box-shadow: var(--shadow-md);
+}
+
+.resource-screenshot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .resource-detail-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
