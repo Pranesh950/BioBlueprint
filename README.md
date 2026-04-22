@@ -1,4 +1,4 @@
-# BioBlueprint
+# OSbioinformatics
 
 A discovery catalog for open bioengineering resources, with license-aware listings and attribution-first metadata.
 
@@ -35,4 +35,4 @@ Quick summary:
 
 ## License
 
-Each listed resource retains its own license. BioBlueprint metadata and presentation remain open source.
+Each listed resource retains its own license. OSbioinformatics metadata and presentation remain open source.

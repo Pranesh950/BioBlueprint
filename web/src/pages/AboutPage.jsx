@@ -4,7 +4,7 @@ export default function AboutPage() {
   return (
     <main className="page about-page">
       <section className="about-hero">
-        <p className="eyebrow">About BioBlueprint</p>
+        <p className="eyebrow">About OSbioinformaticstics</p>
         <h1>A discovery catalog for reusable project resources.</h1>
         <p className="lead">
           Curated open-source tools. Each has source, license, and clear attribution.
